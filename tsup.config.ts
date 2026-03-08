@@ -6,9 +6,5 @@ export default defineConfig({
   dts: true,
   minify: true,
   clean: true,
-  external: [
-    'react',
-    'react-native',
-    'react-native-safe-area-context',
-  ],
+  external: ['react', 'react-native'],
 });

@@ -14,8 +14,6 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   moduleNameMapper: {
     '^react-native$': '<rootDir>/tests/__mocks__/react-native.js',
-    '^react-native-safe-area-context$':
-      '<rootDir>/tests/__mocks__/react-native-safe-area-context.js',
   },
   transform: {
     '^.+\\.tsx?$': [

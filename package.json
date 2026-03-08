@@ -51,7 +51,6 @@
   },
   "peerDependencies": {
     "react": ">=18.0.0",
-    "react-native": "*",
-    "react-native-safe-area-context": "*"
+    "react-native": "*"
   }
 }

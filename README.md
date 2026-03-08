@@ -14,15 +14,7 @@ pnpm add react-native-aura-select
 
 ### Peer Dependencies
 
-This package requires the following peer dependencies. Install them in your project if not already present:
-
-```bash
-npm install react-native-safe-area-context
-```
-
-| Package | Purpose |
-|---------|---------|
-| `react-native-safe-area-context` | Safe area insets for the modal |
+This package requires `react` and `react-native` as peer dependencies (they should already be in your project).
 
 ## Quick Start
 
@@ -58,7 +50,6 @@ function MyScreen() {
 - **Flexible item shape** – Works with primitives or objects via `labelKey`/`valueKey` or `getLabel`/`getValue`
 - **Clearable** – Optional "Clear" action in the modal
 - **Multiple selection** – Select several options with `multiple={true}`
-- **Safe area** – Modal content respects device insets (notch, home indicator)
 
 ## API Reference
 
@@ -81,6 +72,7 @@ function MyScreen() {
 | `SelectSearchInputProps` | Props for custom search components |
 | `SelectTriggerContentProps<T>` | Props for `renderTriggerContent` |
 | `SelectRenderItemProps<T>` | Props for `renderItem` (item, isSelected, getLabel, getValue, accentColor, colors, etc.) |
+| `SelectListProps<T>` | Props for `renderList` (data, renderItem, keyExtractor, contentContainerStyle) |
 | `SelectModalTheme` | Theme object for modal styling |
 
 ### Props
@@ -115,6 +107,7 @@ When `multiple` is `true`: `value` is `T[]`, `onChange` is `(items: T[]) => void
 | `clearButtonText` | `string` | `'Clear'` | Clear button label |
 | `unmountWhenClosed` | `boolean` | `false` | Unmount modal content when closed |
 | `modalTheme` | `SelectModalTheme` | — | Theme for modal colors |
+| `renderList` | `(props: SelectListProps<T>) => ReactNode` | — | Custom list (e.g. FlashList); receives `{ data, renderItem, keyExtractor, contentContainerStyle }` |
 
 ## Examples
 
@@ -267,6 +260,30 @@ const [selected, setSelected] = useState<Option[]>([]);
       value={props.value}
       onChangeText={props.onChangeText}
       placeholder={props.placeholder}
+    />
+  )}
+/>
+```
+
+### Custom list (e.g. FlashList)
+
+Use `renderList` to replace the default FlatList with [FlashList](https://shopify.github.io/flash-list/) or any other list component. You receive `{ data, renderItem, keyExtractor, contentContainerStyle }` and render the list as you like:
+
+```tsx
+import { FlashList } from '@shopify/flash-list';
+import { Select } from 'react-native-aura-select';
+
+<Select
+  options={options}
+  value={selected}
+  onChange={setSelected}
+  renderList={({ data, renderItem, keyExtractor, contentContainerStyle }) => (
+    <FlashList
+      data={data}
+      renderItem={renderItem}
+      keyExtractor={keyExtractor}
+      contentContainerStyle={contentContainerStyle}
+      estimatedItemSize={48}
     />
   )}
 />

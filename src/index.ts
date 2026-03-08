@@ -9,5 +9,6 @@ export type {
   SelectSearchInputProps,
   SelectTriggerContentProps,
   SelectRenderItemProps,
+  SelectListProps,
   SelectModalTheme,
 } from './types';

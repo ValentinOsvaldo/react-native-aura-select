@@ -9,7 +9,6 @@ import {
   Text,
   View,
 } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { DefaultSearchInput, DefaultSelectInput } from '../components';
 import type { SelectProps, SelectPropsMultiple, SelectPropsSingle } from '../types';
 import { buildGetLabel, buildGetValue, valuesEqual } from './utils';
@@ -50,6 +49,7 @@ export function Select<T>({
   multiple = false,
   formatMultipleLabel,
   renderTriggerContent,
+  renderList,
   unmountWhenClosed = false,
   searchable = false,
 }: SelectProps<T>): ReactElement {
@@ -121,7 +121,6 @@ export function Select<T>({
     }),
     [modalTheme],
   );
-  const insets = useSafeAreaInsets();
   const [modalVisible, setModalVisible] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [asyncResults, setAsyncResults] = useState<T[] | null>(null);
@@ -372,16 +371,7 @@ export function Select<T>({
       >
         {!unmountWhenClosed || modalVisible ? (
           <View
-            style={[
-              styles.modalContainer,
-              themeStyles?.modalContainer,
-              {
-                paddingTop: insets.top,
-                paddingBottom: insets.bottom,
-                paddingLeft: insets.left,
-                paddingRight: insets.right,
-              },
-            ]}
+            style={[styles.modalContainer, themeStyles?.modalContainer]}
           >
             <View style={[styles.modalHeader, themeStyles?.modalHeader]}>
               {modalTitle ? (
@@ -421,6 +411,13 @@ export function Select<T>({
               <View style={styles.centered}>
                 <Text style={[styles.hint, themeStyles?.hint]}>No results</Text>
               </View>
+            ) : renderList ? (
+              renderList({
+                data: filteredOrResultOptions,
+                renderItem: (info) => renderRow({ item: info.item }),
+                keyExtractor,
+                contentContainerStyle: styles.listContent,
+              })
             ) : (
               <FlatList
                 data={filteredOrResultOptions}

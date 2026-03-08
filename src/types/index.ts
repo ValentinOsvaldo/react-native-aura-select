@@ -10,5 +10,6 @@ export type {
   SelectPropsBase,
   SelectTriggerContentProps,
   SelectRenderItemProps,
+  SelectListProps,
   SelectModalTheme,
 } from './select';

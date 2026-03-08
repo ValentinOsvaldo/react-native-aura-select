@@ -1,5 +1,18 @@
 import type { ComponentType, ReactNode } from 'react';
+import type { StyleProp, ViewStyle } from 'react-native';
 import type { SelectInputProps, SelectSearchInputProps } from './inputs';
+
+/** Props passed to renderList for custom list rendering (e.g. FlashList instead of FlatList). */
+export interface SelectListProps<T> {
+  /** Options to display in the list (already filtered when searchable). */
+  data: T[];
+  /** Render a single option row. Same contract as FlatList/FlashList renderItem. */
+  renderItem: (info: { item: T; index: number }) => ReactNode;
+  /** Key for each item. Same as keyExtractor from Select props. */
+  keyExtractor: (item: T, index: number) => string;
+  /** Suggested content container style for the list (optional). */
+  contentContainerStyle?: StyleProp<ViewStyle>;
+}
 
 /** Props passed to renderTriggerContent for custom trigger/chip rendering */
 export interface SelectTriggerContentProps<T> {
@@ -108,6 +121,11 @@ export interface SelectPropsBase<T> {
   unmountWhenClosed?: boolean;
   /** Optional theme for the modal. */
   modalTheme?: SelectModalTheme;
+  /**
+   * Custom list renderer (e.g. FlashList). When provided, the built-in FlatList is not used.
+   * Receives { data, renderItem, keyExtractor, contentContainerStyle } so you can render the list as you like.
+   */
+  renderList?: (props: SelectListProps<T>) => ReactNode;
 }
 
 /** Single selection: one value or null. Use when multiple is false or omitted. */
