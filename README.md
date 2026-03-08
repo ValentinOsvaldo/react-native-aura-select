@@ -311,4 +311,4 @@ Tests live in the `tests/` folder: unit tests for helpers (`utils.test.ts`) and 
 
 ## License
 
-ISC
+MIT
