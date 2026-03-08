@@ -1,6 +1,6 @@
 {
   "name": "react-native-aura-select",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "React Native select component with modal, optional search, single/multiple selection, and custom inputs",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
