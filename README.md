@@ -307,7 +307,7 @@ Tests live in the `tests/` folder: unit tests for helpers (`utils.test.ts`) and 
 
 ## Roadmap
 
-- [ ] **Sitio web / documentación** — Crear un sitio web y documentación más completa en el futuro.
+- [ ] **Website / documentation** — Create a website and more complete documentation in the future.
 
 ## License
 
