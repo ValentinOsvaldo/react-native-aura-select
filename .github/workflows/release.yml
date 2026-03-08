@@ -9,7 +9,7 @@ on:
     branches: [main]
 
 permissions:
-  id-token: write   # Required for npm trusted publishing (OIDC)
+  id-token: write
   contents: read
 
 jobs:

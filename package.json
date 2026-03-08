@@ -30,12 +30,12 @@
   "type": "commonjs",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/react-native-aura-select.git"
+    "url": "git+https://github.com/ValentinOsvaldo/react-native-aura-select.git"
   },
   "bugs": {
-    "url": "https://github.com/your-username/react-native-aura-select/issues"
+    "url": "https://github.com/ValentinOsvaldo/react-native-aura-select/issues"
   },
-  "homepage": "https://github.com/your-username/react-native-aura-select#readme",
+  "homepage": "https://github.com/ValentinOsvaldo/react-native-aura-select#readme",
   "devDependencies": {
     "@testing-library/react-native": "^12.4.3",
     "@types/jest": "^29.5.12",
