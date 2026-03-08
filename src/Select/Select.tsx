@@ -1,3 +1,4 @@
+import type { ReactElement } from 'react';
 import { useCallback, useMemo, useState } from 'react';
 import {
   ActivityIndicator,
@@ -10,7 +11,7 @@ import {
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { DefaultSearchInput, DefaultSelectInput } from '../components';
-import type { SelectProps } from '../types';
+import type { SelectProps, SelectPropsMultiple, SelectPropsSingle } from '../types';
 import { buildGetLabel, buildGetValue, valuesEqual } from './utils';
 
 /**
@@ -22,6 +23,8 @@ import { buildGetLabel, buildGetValue, valuesEqual } from './utils';
  * @example
  * <Select options={options} value={selected} onChange={setSelected} searchable={false} />
  */
+export function Select<T>(props: SelectPropsMultiple<T>): ReactElement;
+export function Select<T>(props: SelectPropsSingle<T>): ReactElement;
 export function Select<T>({
   options,
   value,
@@ -49,7 +52,7 @@ export function Select<T>({
   renderTriggerContent,
   unmountWhenClosed = false,
   searchable = false,
-}: SelectProps<T>) {
+}: SelectProps<T>): ReactElement {
   const selectedItems: T[] = useMemo(() => {
     if (multiple) {
       return Array.isArray(value) ? value : [];
@@ -297,7 +300,15 @@ export function Select<T>({
       const content = renderItemProp ? (
         renderItemProp(renderItemProps)
       ) : (
-        <>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: 12,
+            flex: 1,
+          }}
+        >
           <Text
             style={[styles.itemLabel, themeStyles?.itemLabel]}
             numberOfLines={1}
@@ -311,7 +322,7 @@ export function Select<T>({
               ✓
             </Text>
           ) : null}
-        </>
+        </View>
       );
 
       return (
