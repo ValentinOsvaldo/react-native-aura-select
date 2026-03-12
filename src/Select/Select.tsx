@@ -1,4 +1,4 @@
-import type { ReactElement } from 'react';
+import React, { type ReactElement } from 'react';
 import { useCallback, useMemo, useState } from 'react';
 import {
   ActivityIndicator,
@@ -297,7 +297,7 @@ export function Select<T>({
       };
 
       const content = renderItemProp ? (
-        renderItemProp(renderItemProps)
+        React.createElement(renderItemProp, renderItemProps)
       ) : (
         <View
           style={{
