@@ -191,7 +191,7 @@ const [selected, setSelected] = useState<Option[]>([]);
 
 ### Custom option row (renderItem)
 
-`renderItem` receives an object with `item`, `isSelected`, `getLabel`, `getValue`, and theme colors (`accentColor`, `color`, `borderColor`, etc.) so you can render a checkbox, custom icon, or fully styled row:
+`renderItem` receives an object with `item`, `isSelected`, `getLabel`, `getValue`, and theme colors (`accentColor`, `color`, `borderColor`, etc.) so you can render a checkbox, custom icon, or fully styled row. You can pass either a render function `(props) => <YourRow {...props} />` or the component directly: `renderItem={YourRow}` (both are supported and avoid infinite re-renders).
 
 ```tsx
 <Select
