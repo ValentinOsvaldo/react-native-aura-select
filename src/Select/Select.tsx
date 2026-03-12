@@ -52,6 +52,7 @@ export function Select<T>({
   renderList,
   unmountWhenClosed = false,
   searchable = false,
+  searchInputAutoFocus = false,
 }: SelectProps<T>): ReactElement {
   const selectedItems: T[] = useMemo(() => {
     if (multiple) {
@@ -226,7 +227,7 @@ export function Select<T>({
             value={searchQuery}
             onChangeText={handleSearchChange}
             placeholder={searchPlaceholder}
-            autoFocus
+            autoFocus={searchInputAutoFocus}
           />
         )}
         {clearable && (

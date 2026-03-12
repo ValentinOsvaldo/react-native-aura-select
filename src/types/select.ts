@@ -86,6 +86,8 @@ export interface SelectPropsBase<T> {
   getValue?: (item: T) => unknown;
   /** Render each option in the modal list. Receives { item, isSelected, getLabel, getValue, accentColor, ... }. If not provided, shows label + default checkmark. */
   renderItem?: (props: SelectRenderItemProps<T>) => ReactNode;
+  /** Whether to auto-focus the search input when the modal is opened. */
+  searchInputAutoFocus?: boolean;
   /** Key extractor for list items. */
   keyExtractor?: (item: T) => string;
   /** Async search callback (only used when searchable is true). */
