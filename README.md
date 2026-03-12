@@ -283,7 +283,6 @@ import { Select } from 'react-native-aura-select';
       renderItem={renderItem}
       keyExtractor={keyExtractor}
       contentContainerStyle={contentContainerStyle}
-      estimatedItemSize={48}
     />
   )}
 />
